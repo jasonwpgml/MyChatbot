@@ -5,7 +5,7 @@ st.title("홈")
 
 st.write("Hello, World!")
 
-st.header("Text Elements")
+st.header("여기에서 저의 챗봇과 이야기를 나눠 보세요.")
 
 st.markdown("Hello **world!**")
 
@@ -23,6 +23,7 @@ client = OpenAI()
 
 # 모델 호출해서 연결 잘 됐는지 확인
 models = client.models.list()
+gpt_model = "gpt-4o-mini"
 
 with st.chat_message("assistant"):
     st.markdown("API key 연결 성공: " + str(models.data[0].id))
@@ -48,7 +49,7 @@ if prompt:
     with st.chat_message("assistant"):
         with st.spinner("답변을 생성하는 중입니다."):
             response = client.responses.create(
-                model="gpt-4o-mini",
+                model=gpt_model,
                 input=prompt,
             )
         st.markdown(response.output_text)
