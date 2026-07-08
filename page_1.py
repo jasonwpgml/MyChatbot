@@ -26,7 +26,7 @@ models = client.models.list()
 gpt_model = "gpt-4o-mini"
 
 with st.chat_message("assistant"):
-    st.markdown("API key 연결 성공: " + str(models.data[0].id))
+    st.markdown("API key 연결 성공. 연결된 모델: " + gpt_model + " " + str(models.data[0].id))
     st.markdown("반갑습니다.")
 
 # 챗봇에 쓸 메세지 리스트 session_state에 최초 1회 생성
