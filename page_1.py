@@ -9,6 +9,14 @@ import database as db
 
 DEFAULT_ROOM_NAME = "기본 채팅방"
 
+# 선택 가능한 GPT 모델 목록 (첫 번째가 기본값)
+AVAILABLE_MODELS = [
+    "gpt-4o-mini",
+    "gpt-4o",
+    "gpt-4.1-mini",
+    "gpt-4.1",
+]
+
 
 def format_time(utc_str):
     """DB의 UTC 시각 문자열을 로컬 시간 'YYYY-MM-DD HH:MM' 형식으로 변환한다."""
@@ -21,8 +29,6 @@ st.caption("저의 챗봇과 이야기를 나눠 보세요. 대화는 SQLite에 
 
 load_dotenv()
 db.init_db()
-
-GPT_MODEL = "gpt-4o-mini"
 
 # --- API 키 확인 (요구사항 1-5) ---
 if not os.getenv("OPENAI_API_KEY"):
@@ -52,8 +58,13 @@ if (
 ):
     st.session_state.current_room_id = room_ids[0]
 
-# --- 사이드바: 채팅방 관리 (요구사항 4, 5) ---
+# --- 사이드바: 모델 선택 + 채팅방 관리 (요구사항 4, 5) ---
 with st.sidebar:
+    st.header("모델 설정")
+    gpt_model = st.selectbox("사용할 GPT 모델", AVAILABLE_MODELS)
+
+    st.divider()
+
     st.header("채팅방 관리")
 
     # 1. 새로운 채팅방 생성
@@ -103,15 +114,20 @@ current_room_id = st.session_state.current_room_id
 st.subheader(f"🗨️ {room_names[current_room_id]}")
 
 for message in db.get_messages(current_room_id):
+    # AI 답변/오류에는 어떤 모델이 생성했는지 시간과 함께 표시한다.
+    caption = format_time(message["create_date"])
+    if message["model"]:
+        caption = f"{message['model']} · {caption}"
+
     if message["role"] == "error":
         # API 호출 실패 기록도 대화의 일부로 표시한다.
         with st.chat_message("assistant", avatar="⚠️"):
             st.error(message["content"])
-            st.caption(format_time(message["create_date"]))
+            st.caption(caption)
     else:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
-            st.caption(format_time(message["create_date"]))
+            st.caption(caption)
 
 # --- 사용자 입력 → 저장 → 문맥 포함 API 호출 → 답변 저장 (요구사항 1, 3) ---
 prompt = st.chat_input("무엇을 도와드릴까요?")
@@ -135,18 +151,18 @@ if prompt:
         with st.spinner("답변을 생성하는 중입니다..."):
             try:
                 response = client.responses.create(
-                    model=GPT_MODEL,
+                    model=gpt_model,
                     input=history,
                 )
                 answer = response.output_text
             except Exception as error:
                 # 오류 내용도 메시지로 저장해 대화 기록에 남긴다.
                 error_text = f"API 호출에 실패했습니다: {error}"
-                db.add_message(current_room_id, "error", error_text)
+                db.add_message(current_room_id, "error", error_text, model=gpt_model)
                 st.error(error_text)
                 st.stop()
         st.markdown(answer)
-        st.caption(datetime.now().strftime("%Y-%m-%d %H:%M"))
+        st.caption(f"{gpt_model} · " + datetime.now().strftime("%Y-%m-%d %H:%M"))
 
-    # 3) AI 답변도 DB에 저장
-    db.add_message(current_room_id, "assistant", answer)
+    # 3) AI 답변도 어떤 모델이 생성했는지와 함께 DB에 저장
+    db.add_message(current_room_id, "assistant", answer, model=gpt_model)

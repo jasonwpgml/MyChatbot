@@ -10,7 +10,8 @@ erDiagram
     message {
         INTEGER id PK "AUTOINCREMENT"
         INTEGER chat_room_id FK "chat_room.id, ON DELETE CASCADE"
-        TEXT role "user 또는 assistant"
+        TEXT role "user, assistant 또는 error"
         TEXT content "메시지 내용, NOT NULL"
+        TEXT model "답변 생성 GPT 모델, 사용자 메시지는 NULL"
         DATETIME create_date "생성 시각, DEFAULT CURRENT_TIMESTAMP"
     }

@@ -39,7 +39,7 @@
 
         <!-- message table -->
         <mxCell id="message" value="message" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;" vertex="1" parent="1">
-          <mxGeometry x="500" y="90" width="300" height="180" as="geometry" />
+          <mxGeometry x="500" y="90" width="300" height="210" as="geometry" />
         </mxCell>
         <mxCell id="ms_r1" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;strokeColor=inherit;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="message">
           <mxGeometry y="30" width="300" height="30" as="geometry" />
@@ -83,7 +83,16 @@
         <mxCell id="ms_r5_k" value="" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=11;" vertex="1" parent="ms_r5">
           <mxGeometry width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="ms_r5_v" value="create_date  DATETIME  DEFAULT CURRENT_TIMESTAMP" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=12;align=left;spacingLeft=6;" vertex="1" parent="ms_r5">
+        <mxCell id="ms_r5_v" value="model  TEXT  NULL (답변 생성 GPT 모델)" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=12;align=left;spacingLeft=6;" vertex="1" parent="ms_r5">
+          <mxGeometry x="60" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ms_r6" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;strokeColor=inherit;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="message">
+          <mxGeometry y="180" width="300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ms_r6_k" value="" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=11;" vertex="1" parent="ms_r6">
+          <mxGeometry width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ms_r6_v" value="create_date  DATETIME  DEFAULT CURRENT_TIMESTAMP" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=12;align=left;spacingLeft=6;" vertex="1" parent="ms_r6">
           <mxGeometry x="60" width="240" height="30" as="geometry" />
         </mxCell>
 

@@ -3,7 +3,8 @@
 ERD (Agent/ERD.drawio) 기준:
 - chat_room: id(PK), name, create_date
 - message:   id(PK), chat_room_id(FK -> chat_room.id, ON DELETE CASCADE),
-             role, content, create_date
+             role, content, model, create_date
+  (model: 답변을 생성한 GPT 모델 이름. 사용자 메시지는 NULL)
 """
 
 import sqlite3
@@ -39,12 +40,17 @@ def init_db():
                 chat_room_id INTEGER NOT NULL,
                 role         TEXT NOT NULL,
                 content      TEXT NOT NULL,
+                model        TEXT,
                 create_date  DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 FOREIGN KEY (chat_room_id)
                     REFERENCES chat_room (id) ON DELETE CASCADE
             )
             """
         )
+        # 마이그레이션: model 컬럼이 없는 기존 DB에 컬럼을 추가한다.
+        columns = [row["name"] for row in conn.execute("PRAGMA table_info(message)")]
+        if "model" not in columns:
+            conn.execute("ALTER TABLE message ADD COLUMN model TEXT")
 
 
 def create_chat_room(name):
@@ -77,12 +83,17 @@ def clear_messages(room_id):
         conn.execute("DELETE FROM message WHERE chat_room_id = ?", (room_id,))
 
 
-def add_message(room_id, role, content):
-    """메시지를 저장한다. role은 'user', 'assistant' 또는 'error'(API 호출 실패 기록)."""
+def add_message(room_id, role, content, model=None):
+    """메시지를 저장한다.
+
+    role은 'user', 'assistant' 또는 'error'(API 호출 실패 기록).
+    model은 답변을 생성한(또는 생성에 실패한) GPT 모델 이름. 사용자 메시지는 None.
+    """
     with get_connection() as conn:
         conn.execute(
-            "INSERT INTO message (chat_room_id, role, content) VALUES (?, ?, ?)",
-            (room_id, role, content),
+            "INSERT INTO message (chat_room_id, role, content, model) "
+            "VALUES (?, ?, ?, ?)",
+            (room_id, role, content, model),
         )
 
 
@@ -94,7 +105,7 @@ def get_messages(room_id):
     """
     with get_connection() as conn:
         rows = conn.execute(
-            "SELECT id, role, content, create_date FROM message "
+            "SELECT id, role, content, model, create_date FROM message "
             "WHERE chat_room_id = ? ORDER BY id",
             (room_id,),
         ).fetchall()
