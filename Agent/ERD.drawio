@@ -1,0 +1,100 @@
+<mxfile host="app.diagrams.net" modified="2026-07-15T00:00:00.000Z" agent="Claude" version="24.0.0" type="device">
+  <diagram id="chatbot-erd" name="Chatbot ERD">
+    <mxGraphModel dx="1000" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="600" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- chat_room table -->
+        <mxCell id="chat_room" value="chat_room" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="80" y="120" width="280" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="cr_r1" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;strokeColor=inherit;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="chat_room">
+          <mxGeometry y="30" width="280" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="cr_r1_k" value="🔑 PK" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=11;fontStyle=1;" vertex="1" parent="cr_r1">
+          <mxGeometry width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="cr_r1_v" value="id  INTEGER  AUTOINCREMENT" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=12;align=left;spacingLeft=6;fontStyle=4;" vertex="1" parent="cr_r1">
+          <mxGeometry x="60" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="cr_r2" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;strokeColor=inherit;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="chat_room">
+          <mxGeometry y="60" width="280" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="cr_r2_k" value="" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=11;" vertex="1" parent="cr_r2">
+          <mxGeometry width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="cr_r2_v" value="name  TEXT  NOT NULL" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=12;align=left;spacingLeft=6;" vertex="1" parent="cr_r2">
+          <mxGeometry x="60" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="cr_r3" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;strokeColor=inherit;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="chat_room">
+          <mxGeometry y="90" width="280" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="cr_r3_k" value="" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=11;" vertex="1" parent="cr_r3">
+          <mxGeometry width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="cr_r3_v" value="create_date  DATETIME  DEFAULT CURRENT_TIMESTAMP" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=12;align=left;spacingLeft=6;" vertex="1" parent="cr_r3">
+          <mxGeometry x="60" width="220" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- message table -->
+        <mxCell id="message" value="message" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="500" y="90" width="300" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="ms_r1" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;strokeColor=inherit;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="message">
+          <mxGeometry y="30" width="300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ms_r1_k" value="🔑 PK" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=11;fontStyle=1;" vertex="1" parent="ms_r1">
+          <mxGeometry width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ms_r1_v" value="id  INTEGER  AUTOINCREMENT" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=12;align=left;spacingLeft=6;fontStyle=4;" vertex="1" parent="ms_r1">
+          <mxGeometry x="60" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ms_r2" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;strokeColor=inherit;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="message">
+          <mxGeometry y="60" width="300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ms_r2_k" value="🔗 FK" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=11;fontStyle=1;fontColor=#B85450;" vertex="1" parent="ms_r2">
+          <mxGeometry width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ms_r2_v" value="chat_room_id  INTEGER  → chat_room.id (ON DELETE CASCADE)" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=12;align=left;spacingLeft=6;" vertex="1" parent="ms_r2">
+          <mxGeometry x="60" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ms_r3" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;strokeColor=inherit;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="message">
+          <mxGeometry y="90" width="300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ms_r3_k" value="" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=11;" vertex="1" parent="ms_r3">
+          <mxGeometry width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ms_r3_v" value="role  TEXT  NOT NULL ('user' | 'assistant')" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=12;align=left;spacingLeft=6;" vertex="1" parent="ms_r3">
+          <mxGeometry x="60" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ms_r4" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;strokeColor=inherit;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="message">
+          <mxGeometry y="120" width="300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ms_r4_k" value="" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=11;" vertex="1" parent="ms_r4">
+          <mxGeometry width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ms_r4_v" value="content  TEXT  NOT NULL" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=12;align=left;spacingLeft=6;" vertex="1" parent="ms_r4">
+          <mxGeometry x="60" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ms_r5" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;strokeColor=inherit;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="message">
+          <mxGeometry y="150" width="300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ms_r5_k" value="" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=11;" vertex="1" parent="ms_r5">
+          <mxGeometry width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ms_r5_v" value="create_date  DATETIME  DEFAULT CURRENT_TIMESTAMP" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=12;align=left;spacingLeft=6;" vertex="1" parent="ms_r5">
+          <mxGeometry x="60" width="240" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- 1:N relationship (crow's foot, dashed like the reference ERD) -->
+        <mxCell id="rel_1n" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;startArrow=ERmandOne;startFill=0;endArrow=ERoneToMany;endFill=0;dashed=1;rounded=0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="cr_r1" target="ms_r2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_label" value="1 : N&#10;(채팅방 삭제 시 메시지 CASCADE 삭제)" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="360" y="150" width="140" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

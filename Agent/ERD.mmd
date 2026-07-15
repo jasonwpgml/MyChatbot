@@ -1,0 +1,16 @@
+erDiagram
+    chat_room ||--o{ message : "1:N (하나의 채팅방에 여러 메시지)"
+
+    chat_room {
+        INTEGER id PK "AUTOINCREMENT"
+        TEXT name "채팅방 이름, NOT NULL"
+        DATETIME create_date "생성 시각, DEFAULT CURRENT_TIMESTAMP"
+    }
+
+    message {
+        INTEGER id PK "AUTOINCREMENT"
+        INTEGER chat_room_id FK "chat_room.id, ON DELETE CASCADE"
+        TEXT role "user 또는 assistant"
+        TEXT content "메시지 내용, NOT NULL"
+        DATETIME create_date "생성 시각, DEFAULT CURRENT_TIMESTAMP"
+    }
